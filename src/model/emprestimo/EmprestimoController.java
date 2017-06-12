@@ -42,6 +42,9 @@ public final class EmprestimoController {
 			throw new RuntimeException("Empréstimo realizado não foi encontrado!");
 		}
 		
+		Obra obra = emprestimo.getObra();
+		obra.setQtdeDisponivel(obra.getQtdeDisponivel() + 1);
+		
 		repositorio.remove(emprestimo);
 		
 		long difference = dataDevolucao.getTime() - emprestimo.getDataEmprestimo().getTime();
