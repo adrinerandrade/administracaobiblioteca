@@ -12,4 +12,6 @@ public abstract class Usuario {
 		this.nome = nome;
 	}
 	
+	public abstract TipoUsuario getTipo();
+	
 }
