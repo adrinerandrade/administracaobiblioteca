@@ -39,4 +39,8 @@ public final class Aluno extends Usuario {
 		return TipoUsuario.ALUNO;
 	}
 	
+	
+	public String toString(){
+		return getTipo() + ": " + getNome() + " - " + getNumeroMatricula();
+	}
 }

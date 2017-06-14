@@ -106,7 +106,7 @@ public class UsuarioUi extends JDialog {
 					if (usuario != null) {
 						usuario.setNome(txtNome.getText());
 						setVisible(false);
-						parent.usuarioIncluido(usuario);
+						parent.incluirUsuario(usuario);
 					}
 				}
 			});

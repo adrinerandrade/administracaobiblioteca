@@ -13,7 +13,7 @@ public final class RepositorioUsuarios {
 
 	private List<Usuario> usuarios = new ArrayList<>();
 
-	public void adicionaAluno(Usuario usuario) {
+	public void adicionaUsuario(Usuario usuario) {
 		if (usuarios.contains(usuario)) {
 			throw new RuntimeException(String.format("Usuario '%s' já existente.", usuario.getNome()));
 		}

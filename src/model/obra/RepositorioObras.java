@@ -13,7 +13,7 @@ public final class RepositorioObras {
 
 	private RepositorioObras() {}
 
-	public void addLivro(Obra obra) {
+	public void addObra(Obra obra) {
 		// Erro de compilação de inferência, não há nada a se fazer senão um cast :(
 		if (obras.contains(obra)) {
 			throw new RuntimeException("Obra com os mesmo valores já existente.");

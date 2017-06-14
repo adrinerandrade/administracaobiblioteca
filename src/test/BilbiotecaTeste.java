@@ -1,21 +1,14 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+
+import org.junit.Test;
 
 import model.obra.Livro;
-import model.obra.MaterialDigital;
-import model.obra.RepositorioObras;
-import model.obra.Revista;
-import model.obra.TipoMaterialDigital;
 import model.usuario.Aluno;
 import model.usuario.Professor;
 import model.usuario.RepositorioUsuarios;
-
-import org.junit.Test;
 
 public class BilbiotecaTeste {
 
@@ -111,7 +104,7 @@ public class BilbiotecaTeste {
 		professor.setDataAdmissao(newDate(5,5));
 		
 		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
-		usuarios.adicionaAluno(aluno);
+		usuarios.adicionaUsuario(aluno);
 //		usuarios.adicionaProfessor(professor);
 	}
 	

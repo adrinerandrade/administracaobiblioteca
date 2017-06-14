@@ -36,23 +36,8 @@ public class ObraUi extends JDialog {
 	private Obra obra;
 	private JTextField txtQuantidade;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ObraUi dialog = new ObraUi();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Create the dialog.
-	 */
-	public ObraUi() {
+	public ObraUi(DashBoard parent) {
 		setBounds(100, 100, 379, 377);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -199,6 +184,11 @@ public class ObraUi extends JDialog {
 				obra.setQtdeDisponivel(Integer.parseInt(txtQuantidade.getText()));
 				obra.setNome(txtObra.getText());
 
+				if (obra != null) {
+					setVisible(false);
+					parent.incluirObra(obra);
+				}
+				
 				dispose();
 			}
 		});
@@ -244,6 +234,8 @@ public class ObraUi extends JDialog {
 				txtAno.setEnabled(false);
 			}
 		});
+		
+		setVisible(true);
 	}
 	
 	public Obra getObra(){
