@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import model.obra.Obra;
-import model.obra.ResultadoConsultaObras;
 import model.usuario.EstrategiaNegocio;
 import model.usuario.Usuario;
 
@@ -33,7 +32,7 @@ public final class EmprestimoController {
 		return repositorio.getEmprestimosUsuario(usuario);
 	}
 	
-	public ResultadoConsultaObras listarObrasEmprestadas(Usuario usuario) {
+	public List<Obra> listarObrasEmprestadas(Usuario usuario) {
 		return repositorio.getObrasEmprestadas(usuario);
 	}
 	

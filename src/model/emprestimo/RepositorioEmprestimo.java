@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.obra.Obra;
-import model.obra.RepositorioObras;
-import model.obra.ResultadoConsultaObras;
 import model.usuario.Usuario;
 
 final class RepositorioEmprestimo {
@@ -17,7 +15,6 @@ final class RepositorioEmprestimo {
 	private RepositorioEmprestimo() {}
 	
 	private List<Emprestimo> emprestimos = new ArrayList<>();
-	private RepositorioObras repositorioObras = RepositorioObras.instance();
 
 	void add(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
@@ -33,12 +30,10 @@ final class RepositorioEmprestimo {
 				.collect(toList());
 	}
 	
-	ResultadoConsultaObras getObrasEmprestadas(Usuario usuario) {
-		List<Obra> obras = getEmprestimosUsuario(usuario).stream() //
+	List<Obra> getObrasEmprestadas(Usuario usuario) {
+		return getEmprestimosUsuario(usuario).stream() //
 			.map(Emprestimo::getObra) //
 			.collect(toList());
-		
-		return repositorioObras.converter(obras);
 	}
 	
 	static RepositorioEmprestimo instance() {
