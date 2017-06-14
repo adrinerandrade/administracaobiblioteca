@@ -1,9 +1,16 @@
 package test;
 
+import static org.junit.Assert.*;
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import model.obra.Livro;
+import model.obra.MaterialDigital;
+import model.obra.RepositorioObras;
+import model.obra.Revista;
+import model.obra.TipoMaterialDigital;
 import model.usuario.Aluno;
 import model.usuario.Professor;
 import model.usuario.RepositorioUsuarios;

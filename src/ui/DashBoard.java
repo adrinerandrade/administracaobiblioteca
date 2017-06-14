@@ -101,7 +101,6 @@ public class DashBoard {
 		panel_1.add(usuarioTxt);
 		usuarioTxt.setColumns(10);
 		
-		
 		mdl = new DefaultListModel(); 
 		usuariosList = new JList(mdl);
 		usuariosList.setBounds(10, 51, 250, 385);
@@ -110,10 +109,7 @@ public class DashBoard {
 		JButton btnIncluirUsurio = new JButton("Incluir Usu\u00E1rio");
 		btnIncluirUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UsuarioUi user = new UsuarioUi();
-				Usuario usuario = user.getUsuario(); 
-				mdl.addElement(usuario);	
-				System.out.println(usuario);
+				new UsuarioUi(DashBoard.this);
 			}
 		});
 		btnIncluirUsurio.setBounds(570, 11, 211, 23);
@@ -127,4 +123,10 @@ public class DashBoard {
 		btnRealizarEmprestimo.setBounds(570, 79, 211, 23);
 		frame.getContentPane().add(btnRealizarEmprestimo);
 	}
+	
+	public void usuarioIncluido(Usuario novoUsuario) {
+		mdl.addElement(novoUsuario);	
+		System.out.println(novoUsuario);
+	}
+	
 }

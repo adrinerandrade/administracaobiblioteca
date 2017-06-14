@@ -28,9 +28,8 @@ public class UsuarioUi extends JDialog {
 	private JTextField txtNome;
 	private JTextField txtMatricula;
 	private JTextField txtDataAdm;
-	private Usuario usuario;
 	
-	public UsuarioUi() {
+	public UsuarioUi(DashBoard parent) {
 		setBounds(100, 100, 417, 242);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,13 +87,13 @@ public class UsuarioUi extends JDialog {
 			contentPanel.add(okButton);
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(rdbtnAluno.isSelected()){
+					Usuario usuario = null;
+					if(rdbtnAluno.isSelected()) {
 						usuario = new Aluno();
 						((Aluno) usuario).setNumeroMatricula(Integer.parseInt(txtMatricula.getText()));
 					} else if (rdbtnProfessor.isSelected()) {
 						usuario = new Professor();
 						DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-						/*TODO Ajustar*/
 						try {
 							((Professor) usuario).setDataAdmissao(format.parse(txtDataAdm.getText()));
 						} catch (ParseException e1) {
@@ -103,12 +102,17 @@ public class UsuarioUi extends JDialog {
 					} else {
 						JOptionPane.showMessageDialog(null, "Selecione um tipo de usuário!");
 					}
-					usuario.setNome(txtNome.getText());
-					setVisible(false);
+					
+					if (usuario != null) {
+						usuario.setNome(txtNome.getText());
+						setVisible(false);
+						parent.usuarioIncluido(usuario);
+					}
 				}
 			});
 			okButton.setActionCommand("OK");
 			getRootPane().setDefaultButton(okButton);
+			setVisible(true);
 		}
 
 		rdbtnProfessor.addActionListener(new ActionListener() {
@@ -126,10 +130,6 @@ public class UsuarioUi extends JDialog {
 				txtDataAdm.setEnabled(false);
 			}
 		});
-	}
-
-	public Usuario getUsuario(){
-		return usuario;
 	}
 
 }
