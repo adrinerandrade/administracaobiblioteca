@@ -60,4 +60,9 @@ public final class Livro extends Obra {
 		return true;
 	}
 	
+	@Override
+	public String toString(){
+		return "Livro: " + getNome(); 
+	}
+	
 }

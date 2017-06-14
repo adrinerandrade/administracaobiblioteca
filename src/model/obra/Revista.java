@@ -52,4 +52,9 @@ public final class Revista extends Obra {
 		this.numeroEdicao = numeroEdicao;
 	}
 	
+	@Override
+	public String toString(){
+		return "Revista: " + getNome() + " - Ed." + getNumeroEdicao(); 
+	}
+	
 }

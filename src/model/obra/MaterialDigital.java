@@ -46,4 +46,9 @@ public final class MaterialDigital extends Obra {
 		return true;
 	}
 	
+	@Override
+	public String toString(){
+		return "Material Digital: " + getTipo() + " - " + getNome();
+	}
+	
 }

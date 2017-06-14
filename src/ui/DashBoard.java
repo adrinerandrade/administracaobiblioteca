@@ -57,6 +57,8 @@ public class DashBoard {
 	 * Create the application.
 	 */
 	public DashBoard() {
+		repositorioObras = RepositorioObras.instance();
+		repositorioUsuario = RepositorioUsuarios.instance();
 		initialize();
 	}
 
@@ -77,11 +79,11 @@ public class DashBoard {
 		panel.setLayout(null);
 		
 		JLabel lblPesquisa = new JLabel("Pesquisa:");
-		lblPesquisa.setBounds(10, 23, 46, 14);
+		lblPesquisa.setBounds(10, 23, 60, 14);
 		panel.add(lblPesquisa);
 		
 		obrasTxt = new JTextField();
-		obrasTxt.setBounds(66, 20, 194, 20);
+		obrasTxt.setBounds(80, 20, 180, 20);
 		panel.add(obrasTxt);
 		obrasTxt.setColumns(10);
 		
