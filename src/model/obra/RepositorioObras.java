@@ -22,18 +22,21 @@ public final class RepositorioObras {
 		if (existeLivro(livro)) {
 			throw new RuntimeException("Livro com os mesmos valores já existente.");
 		}
+		livros.add(livro);
 	}
 
 	public void addRevista(Revista revista) {
 		if (existeRevista(revista)) {
 			throw new RuntimeException("Revista com os mesmos valores já existente.");
 		}
+		revistas.add(revista);
 	}
 
 	public void addMaterialDigital(MaterialDigital materialDigital) {
 		if (existeMaterialDigital(materialDigital)) {
 			throw new RuntimeException("Material digital com os mesmos valores já existente.");
 		}
+		materiaisDigitais.add(materialDigital);
 	}
 
 	public void remove(Obra obra) {
