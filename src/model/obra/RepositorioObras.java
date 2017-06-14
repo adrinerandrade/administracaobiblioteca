@@ -27,7 +27,7 @@ public final class RepositorioObras {
 
 	public List<Obra> filtrarPor(String nome) {
 		return obras.stream() //
-					.filter(o -> o.getNome().equals(nome))
+					.filter(o -> o.getNome().contains(nome))
 					.collect(toList());
 	}
 	
