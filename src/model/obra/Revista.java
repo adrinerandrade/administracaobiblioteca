@@ -6,14 +6,35 @@ public final class Revista extends Obra {
 
 	private Date dataPublicação;
 	private int numeroEdicao;
-	
+
+	public Revista(String nome, int qtdeDisponivel, Date dataPublicacao, int numeroEdicao) {
+		super(nome, qtdeDisponivel);
+		setDataPublicação(dataPublicacao);
+		setNumeroEdicao(numeroEdicao);
+	}
+
 	public Date getDataPublicação() {
 		return dataPublicação;
 	}
-	public void setDataPublicação(Date dataPublicação) {
-		this.dataPublicação = dataPublicação;
+
+	public void setDataPublicação(Date dataPublicacao) {
+		if  (dataPublicacao == null) {
+			throw new RuntimeException("É necessário informar uma data de publicação.");
+		}
+		this.dataPublicação = dataPublicacao;
 	}
-	
+
+	public int getNumeroEdicao() {
+		return numeroEdicao;
+	}
+
+	public void setNumeroEdicao(int numeroEdicao) {
+		if (numeroEdicao < 0) {
+			throw new RuntimeException("Número da edição não pode ser negativo");
+		}
+		this.numeroEdicao = numeroEdicao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -22,6 +43,7 @@ public final class Revista extends Obra {
 		result = prime * result + numeroEdicao;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -45,11 +67,5 @@ public final class Revista extends Obra {
 			return false;
 		return true;
 	}
-	public int getNumeroEdicao() {
-		return numeroEdicao;
-	}
-	public void setNumeroEdicao(int numeroEdicao) {
-		this.numeroEdicao = numeroEdicao;
-	}
-	
+
 }

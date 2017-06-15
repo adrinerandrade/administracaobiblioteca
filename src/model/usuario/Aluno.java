@@ -4,11 +4,19 @@ public final class Aluno extends Usuario {
 
 	private int numeroMatricula;
 
+	public Aluno(String nome, int numeroMatricula) {
+		super(nome);
+		setNumeroMatricula(numeroMatricula);
+	}
+	
 	public int getNumeroMatricula() {
 		return numeroMatricula;
 	}
 
 	public void setNumeroMatricula(int numeroMatricula) {
+		if (numeroMatricula < 0) {
+			throw new RuntimeException("Número de matrículo não deve ser negativo.");
+		}
 		this.numeroMatricula = numeroMatricula;
 	}
 	

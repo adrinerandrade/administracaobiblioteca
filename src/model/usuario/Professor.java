@@ -6,11 +6,19 @@ public final class Professor extends Usuario {
 
 	private Date dataAdmissao;
 
+	public Professor(String nome, Date dataAdmissao) {
+		super(nome);
+		setDataAdmissao(dataAdmissao);
+	}
+	
 	public Date getDataAdmissao() {
 		return dataAdmissao;
 	}
 
 	public void setDataAdmissao(Date dataAdmissao) {
+		if (dataAdmissao == null) {
+			throw new RuntimeException("A data de admissão deve ser informada");
+		}
 		this.dataAdmissao = dataAdmissao;
 	}
 

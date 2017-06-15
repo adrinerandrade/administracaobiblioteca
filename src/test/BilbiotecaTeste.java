@@ -95,23 +95,23 @@ public class BilbiotecaTeste {
 	}
 	
 	public void testEstaFazendoEmprestimo() {
-		Livro livro = new Livro();
-		livro.setNome("Vai dar boa");
-		livro.setNomeAutor("João Migué");
-		livro.setAnoPublicacao(2001);
-		livro.setNumeroEdicao(1);
-		livro.setQtdeDisponivel(3);
+//		Livro livro = new Livro();
+//		livro.setNome("Vai dar boa");
+//		livro.setNomeAutor("João Migué");
+//		livro.setAnoPublicacao(2001);
+//		livro.setNumeroEdicao(1);
+//		livro.setQtdeDisponivel(3);
+//		
+//		Aluno aluno = new Aluno();
+//		aluno.setNome("Guilhermino");
+//		aluno.setNumeroMatricula(2002);
+//		
+//		Professor professor = new Professor();
+//		professor.setNome("Jagunço");
+//		professor.setDataAdmissao(newDate(5,5));
 		
-		Aluno aluno = new Aluno();
-		aluno.setNome("Guilhermino");
-		aluno.setNumeroMatricula(2002);
-		
-		Professor professor = new Professor();
-		professor.setNome("Jagunço");
-		professor.setDataAdmissao(newDate(5,5));
-		
-		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
-		usuarios.adicionaAluno(aluno);
+//		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
+//		usuarios.adicionaAluno(aluno);
 //		usuarios.adicionaProfessor(professor);
 	}
 	
