@@ -47,6 +47,9 @@ public final class EmprestimoController {
 		repositorio.remove(emprestimo);
 		
 		long difference = dataDevolucao.getTime() - emprestimo.getDataEmprestimo().getTime();
+		if (difference < 0) {
+			throw new RuntimeException("A data de devolução não pode ser menor que a data de empréstimo.");
+		}
 		return TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 	}
 	
