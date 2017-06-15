@@ -145,8 +145,7 @@ public class DashBoard {
 				if(usuariosList.getSelectedIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Selecione um usuário!");
 				} else {
-					List<Emprestimo>lista = emprestimoCtrl.listarEmprestimos((Usuario)usuarioModel.getElementAt(usuariosList.getSelectedIndex()));
-					DetalhesUsuarioUi detalhe = new DetalhesUsuarioUi(DashBoard.this, lista);
+					DetalhesUsuarioUi detalhe = new DetalhesUsuarioUi(DashBoard.this);
 				}
 				
 			}
@@ -201,10 +200,13 @@ public class DashBoard {
 			Usuario usuario = (Usuario) usuarioModel.getElementAt(usuariosList.getSelectedIndex());
 			Date dataAtual = new Date();
 			emprestimoCtrl.novoEmprestimo(usuario, obra, dataAtual);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (RuntimeException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
+			return;
 		}
+		
+		JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso!");
+		
 	}
 	
 	public double realizarDevolcao(Emprestimo emprestimo, Date dataDevolucao){
@@ -223,5 +225,9 @@ public class DashBoard {
 				obraModel.addElement(obra);
 			});
 		}
+	}
+	
+	public List<Emprestimo> getEmprestimosUsuario(){
+		return emprestimoCtrl.listarEmprestimos((Usuario)usuarioModel.getElementAt(usuariosList.getSelectedIndex()));
 	}
 }

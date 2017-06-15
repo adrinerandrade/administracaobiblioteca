@@ -28,7 +28,7 @@ public class DetalhesUsuarioUi extends JDialog {
 	private DefaultListModel emprestimoModel;
 	private JList list;
 
-	public DetalhesUsuarioUi(DashBoard parent, List<Emprestimo> lista) {
+	public DetalhesUsuarioUi(DashBoard parent) {
 		setBounds(100, 100, 315, 296);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,11 +53,15 @@ public class DetalhesUsuarioUi extends JDialog {
 					} catch (ParseException e2) {
 						JOptionPane.showMessageDialog(null, "A data deve ser informada no formato DD/MM/YYYY");
 						return;
-					}
-					
+					}					
 					
 					double valor = parent.realizarDevolcao(emprestimo, dataDevolucao);
 					JOptionPane.showMessageDialog(null, "O valor do empréstimo é de " + String.valueOf(valor));
+					
+					emprestimoModel.clear();
+					parent.getEmprestimosUsuario().forEach(emp -> {
+						emprestimoModel.addElement(emp);
+					});
 				} catch (RuntimeException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
@@ -94,10 +98,11 @@ public class DetalhesUsuarioUi extends JDialog {
 			}
 		}
 
-		lista.forEach(emprestimo -> {
+		parent.getEmprestimosUsuario().forEach(emprestimo -> {
 			emprestimoModel.addElement(emprestimo);
 		});
 		
 		setVisible(true);
 	}
+	
 }

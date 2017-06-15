@@ -10,7 +10,7 @@ public final class Livro extends Obra {
 
 	public Livro(String nome, int qtdeDisponivel, String nomeAutor, int numeroEdicao, int anoPublicacao) {
 		super(nomeAutor, qtdeDisponivel);
-		setNome(nomeAutor);
+		setNome(nome);
 		setNumeroEdicao(numeroEdicao);
 		setAnoPublicacao(anoPublicacao);
 	}

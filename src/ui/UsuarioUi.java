@@ -84,7 +84,7 @@ public class UsuarioUi extends JDialog {
 		gp.add(rdbtnProfessor);
 		{
 			JButton okButton = new JButton("OK");
-			okButton.setBounds(10, 164, 47, 23);
+			okButton.setBounds(10, 164, 77, 23);
 			contentPanel.add(okButton);
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
