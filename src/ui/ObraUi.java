@@ -43,6 +43,7 @@ public class ObraUi extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
 
 		JPanel panel1 = new JPanel();
 		panel1.setBorder(new TitledBorder(null, "Tipo de Obra", TitledBorder.LEADING, TitledBorder.TOP, null, null));

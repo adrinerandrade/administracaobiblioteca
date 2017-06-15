@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import org.apache.commons.lang3.StringUtils;
+
 import model.emprestimo.Emprestimo;
 import model.usuario.Usuario;
 import java.awt.event.ActionListener;
@@ -30,6 +32,7 @@ public class DetalhesUsuarioUi extends JDialog {
 
 	public DetalhesUsuarioUi(DashBoard parent) {
 		setBounds(100, 100, 315, 267);
+		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -45,6 +48,11 @@ public class DetalhesUsuarioUi extends JDialog {
 					}
 					Emprestimo emprestimo = (Emprestimo) emprestimoModel.getElementAt(list.getSelectedIndex());
 					String data = JOptionPane.showInputDialog("Data de devolução:");
+					
+					
+					if(data == null){
+						return;
+					}
 					
 					DateFormat format = new SimpleDateFormat("dd/MM/yyyy");					
 					Date dataDevolucao;

@@ -71,7 +71,7 @@ public class DashBoard {
 		frame.setBounds(100, 100, 807, 508);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obras", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

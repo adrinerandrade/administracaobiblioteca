@@ -27,6 +27,7 @@ public class DetalhesEmprestimoUi extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
 		
 		emprestimoModel = new DefaultListModel();
 		emprestimoList = new JList(emprestimoModel);

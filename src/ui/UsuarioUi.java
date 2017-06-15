@@ -36,6 +36,7 @@ public class UsuarioUi extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(
