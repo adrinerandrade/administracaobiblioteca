@@ -1,29 +1,53 @@
 package model.obra;
 
+import org.apache.commons.lang3.StringUtils;
+
 public final class Livro extends Obra {
 
 	private String nomeAutor;
 	private int numeroEdicao;
 	private int anoPublicacao;
-	
+
+	public Livro(String nome, int qtdeDisponivel, String nomeAutor, int numeroEdicao, int anoPublicacao) {
+		super(nomeAutor, qtdeDisponivel);
+		setNome(nomeAutor);
+		setNumeroEdicao(numeroEdicao);
+		setAnoPublicacao(anoPublicacao);
+	}
+
 	public String getNomeAutor() {
 		return nomeAutor;
 	}
+
 	public void setNomeAutor(String nomeAutor) {
+		if (StringUtils.isBlank(nomeAutor)) {
+			throw new RuntimeException("Nome do autor n�o pode ser vazio.");
+		}
 		this.nomeAutor = nomeAutor;
 	}
+
 	public int getNumeroEdicao() {
 		return numeroEdicao;
 	}
+
 	public void setNumeroEdicao(int numeroEdicao) {
+		if (numeroEdicao < 0) {
+			throw new RuntimeException("Numero da edi��o n�o pode ser negativo.");
+		}
 		this.numeroEdicao = numeroEdicao;
 	}
+
 	public int getAnoPublicacao() {
 		return anoPublicacao;
 	}
+
 	public void setAnoPublicacao(int anoPublicacao) {
+		if (anoPublicacao < 0) {
+			throw new RuntimeException("Ano de publica��o n�o pode ser negativo.");
+		}
 		this.anoPublicacao = anoPublicacao;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -33,7 +57,7 @@ public final class Livro extends Obra {
 		result = prime * result + numeroEdicao;
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -17,7 +17,7 @@ public class BilbiotecaTeste {
 //		RepositorioUsuarios repositorio = RepositorioUsuarios.instance();
 //		
 //		Aluno aluno = new Aluno();
-//		aluno.setNome("José");
+//		aluno.setNome("Josï¿½");
 //		aluno.setNumeroMatricula(1);
 //		repositorio.adicionaAluno(aluno);
 //		
@@ -42,14 +42,14 @@ public class BilbiotecaTeste {
 //		
 //		Livro livro_1 = new Livro();
 //		livro_1.setNome("O vento levou");
-//		livro_1.setNomeAutor("João Maria José");
+//		livro_1.setNomeAutor("Joï¿½o Maria Josï¿½");
 //		livro_1.setAnoPublicacao(2001);
 //		livro_1.setNumeroEdicao(1);
 //		livro_1.setQtdeDisponivel(1);
 //		
 //		Livro livro_2 = new Livro();
 //		livro_2.setNome("Levou o vento");
-//		livro_2.setNomeAutor("José Maria João");
+//		livro_2.setNomeAutor("Josï¿½ Maria Joï¿½o");
 //		livro_2.setAnoPublicacao(2002);
 //		livro_2.setNumeroEdicao(2);
 //		livro_2.setQtdeDisponivel(1);
@@ -60,14 +60,14 @@ public class BilbiotecaTeste {
 //		MaterialDigital materialDigital = new MaterialDigital();
 //		materialDigital.setNome("");
 //		materialDigital.setQtdeDisponivel(1);
-//		materialDigital.setAnoPublicação(2005);
+//		materialDigital.setAnoPublicaï¿½ï¿½o(2005);
 //		materialDigital.setTipo(TipoMaterialDigital.AUDIO);
 //		
 //		repositorio.addMaterialDigital(materialDigital);
 //		
 //		Revista revista = new Revista();
 //		revista.setNome("Fuxico");
-//		revista.setDataPublicação(newDate(10, 15));
+//		revista.setDataPublicaï¿½ï¿½o(newDate(10, 15));
 //		revista.setNumeroEdicao(1);
 //		revista.setQtdeDisponivel(1);
 //		
@@ -88,23 +88,23 @@ public class BilbiotecaTeste {
 	}
 	
 	public void testEstaFazendoEmprestimo() {
-		Livro livro = new Livro();
-		livro.setNome("Vai dar boa");
-		livro.setNomeAutor("João Migué");
-		livro.setAnoPublicacao(2001);
-		livro.setNumeroEdicao(1);
-		livro.setQtdeDisponivel(3);
+//		Livro livro = new Livro();
+//		livro.setNome("Vai dar boa");
+//		livro.setNomeAutor("Joï¿½o Miguï¿½");
+//		livro.setAnoPublicacao(2001);
+//		livro.setNumeroEdicao(1);
+//		livro.setQtdeDisponivel(3);
+//		
+//		Aluno aluno = new Aluno();
+//		aluno.setNome("Guilhermino");
+//		aluno.setNumeroMatricula(2002);
+//		
+//		Professor professor = new Professor();
+//		professor.setNome("Jagunï¿½o");
+//		professor.setDataAdmissao(newDate(5,5));
 		
-		Aluno aluno = new Aluno();
-		aluno.setNome("Guilhermino");
-		aluno.setNumeroMatricula(2002);
-		
-		Professor professor = new Professor();
-		professor.setNome("Jagunço");
-		professor.setDataAdmissao(newDate(5,5));
-		
-		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
-		usuarios.adicionaUsuario(aluno);
+//		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
+//		usuarios.adicionaAluno(aluno);
 //		usuarios.adicionaProfessor(professor);
 	}
 	

@@ -4,24 +4,46 @@ import java.util.Date;
 
 public final class Revista extends Obra {
 
-	private Date dataPublicação;
+	private Date dataPublicaï¿½ï¿½o;
 	private int numeroEdicao;
-	
-	public Date getDataPublicação() {
-		return dataPublicação;
+
+	public Revista(String nome, int qtdeDisponivel, Date dataPublicacao, int numeroEdicao) {
+		super(nome, qtdeDisponivel);
+		setDataPublicaï¿½ï¿½o(dataPublicacao);
+		setNumeroEdicao(numeroEdicao);
 	}
-	public void setDataPublicação(Date dataPublicação) {
-		this.dataPublicação = dataPublicação;
+
+	public Date getDataPublicaï¿½ï¿½o() {
+		return dataPublicaï¿½ï¿½o;
 	}
-	
+
+	public void setDataPublicaï¿½ï¿½o(Date dataPublicacao) {
+		if  (dataPublicacao == null) {
+			throw new RuntimeException("ï¿½ necessï¿½rio informar uma data de publicaï¿½ï¿½o.");
+		}
+		this.dataPublicaï¿½ï¿½o = dataPublicacao;
+	}
+
+	public int getNumeroEdicao() {
+		return numeroEdicao;
+	}
+
+	public void setNumeroEdicao(int numeroEdicao) {
+		if (numeroEdicao < 0) {
+			throw new RuntimeException("Nï¿½mero da ediï¿½ï¿½o nï¿½o pode ser negativo");
+		}
+		this.numeroEdicao = numeroEdicao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dataPublicação == null) ? 0 : dataPublicação.hashCode());
+		result = prime * result + ((dataPublicaï¿½ï¿½o == null) ? 0 : dataPublicaï¿½ï¿½o.hashCode());
 		result = prime * result + numeroEdicao;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -31,10 +53,10 @@ public final class Revista extends Obra {
 		if (getClass() != obj.getClass())
 			return false;
 		Revista other = (Revista) obj;
-		if (dataPublicação == null) {
-			if (other.dataPublicação != null)
+		if (dataPublicaï¿½ï¿½o == null) {
+			if (other.dataPublicaï¿½ï¿½o != null)
 				return false;
-		} else if (!dataPublicação.equals(other.dataPublicação))
+		} else if (!dataPublicaï¿½ï¿½o.equals(other.dataPublicaï¿½ï¿½o))
 			return false;
 		if (numeroEdicao != other.numeroEdicao)
 			return false;
@@ -44,12 +66,6 @@ public final class Revista extends Obra {
 		} else if (!getNome().equals(other.getNome()))
 			return false;
 		return true;
-	}
-	public int getNumeroEdicao() {
-		return numeroEdicao;
-	}
-	public void setNumeroEdicao(int numeroEdicao) {
-		this.numeroEdicao = numeroEdicao;
 	}
 	
 	@Override
