@@ -46,7 +46,7 @@ public class DetalhesUsuarioUi extends JDialog {
 					Emprestimo emprestimo = (Emprestimo) emprestimoModel.getElementAt(list.getSelectedIndex());
 					String data = JOptionPane.showInputDialog("Data de devolução:");
 					
-					DateFormat format = new SimpleDateFormat("dd/mm/yyyy");					
+					DateFormat format = new SimpleDateFormat("dd/MM/yyyy");					
 					Date dataDevolucao;
 					try {
 						dataDevolucao = format.parse(data);
@@ -55,8 +55,8 @@ public class DetalhesUsuarioUi extends JDialog {
 						return;
 					}					
 					
-					double valor = parent.realizarDevolcao(emprestimo, dataDevolucao);
-					JOptionPane.showMessageDialog(null, "O valor do empréstimo é de " + String.valueOf(valor));
+					double valor = parent.realizarDevolucao(emprestimo, dataDevolucao);
+					JOptionPane.showMessageDialog(null, "O valor do empréstimo é de R$" + String.format("%11.2f", valor));
 					
 					emprestimoModel.clear();
 					parent.getEmprestimosUsuario().forEach(emp -> {
@@ -83,7 +83,7 @@ public class DetalhesUsuarioUi extends JDialog {
 		panel.add(list);
 		{
 			JButton okButton = new JButton("OK");
-			okButton.setBounds(242, 190, 47, 23);
+			okButton.setBounds(231, 190, 58, 23);
 			contentPanel.add(okButton);
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 import model.emprestimo.Emprestimo;
 import model.emprestimo.EmprestimoController;
@@ -198,7 +201,8 @@ public class DashBoard {
 		try {
 			Obra obra = (Obra) obraModel.getElementAt(obrasList.getSelectedIndex());
 			Usuario usuario = (Usuario) usuarioModel.getElementAt(usuariosList.getSelectedIndex());
-			Date dataAtual = new Date();
+			Date dataAtual = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+			
 			emprestimoCtrl.novoEmprestimo(usuario, obra, dataAtual);
 		} catch (RuntimeException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -209,7 +213,7 @@ public class DashBoard {
 		
 	}
 	
-	public double realizarDevolcao(Emprestimo emprestimo, Date dataDevolucao){
+	public double realizarDevolucao(Emprestimo emprestimo, Date dataDevolucao){
 		return emprestimoCtrl.devolucao(emprestimo, dataDevolucao);
 	}
 	
