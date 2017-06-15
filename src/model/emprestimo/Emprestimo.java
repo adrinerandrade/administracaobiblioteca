@@ -1,5 +1,6 @@
 package model.emprestimo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import model.obra.Obra;
@@ -74,5 +75,11 @@ public class Emprestimo {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return getObra().getNome() + " - " + new SimpleDateFormat("dd/mm/yyyy").format(getDataEmprestimo());
+	}
+	
 
 }
