@@ -38,7 +38,7 @@ public class DetalhesUsuarioUi extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JButton btnRealizarDevoluo = new JButton("Realizar Devolu\u00E7\u00E3o");
+		JButton btnRealizarDevoluo = new JButton("Realizar Devolução");
 		btnRealizarDevoluo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

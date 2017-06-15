@@ -1,11 +1,23 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 
+import model.emprestimo.Emprestimo;
+import model.emprestimo.EmprestimoController;
 import model.obra.Livro;
+import model.obra.MaterialDigital;
+import model.obra.RepositorioObras;
+import model.obra.Revista;
+import model.obra.TipoMaterialDigital;
 import model.usuario.Aluno;
 import model.usuario.Professor;
 import model.usuario.RepositorioUsuarios;
@@ -14,104 +26,115 @@ public class BilbiotecaTeste {
 
 	@Test
 	public void testInserindoCorretamenteUsuarios() {
-//		RepositorioUsuarios repositorio = RepositorioUsuarios.instance();
-//		
-//		Aluno aluno = new Aluno();
-//		aluno.setNome("Josï¿½");
-//		aluno.setNumeroMatricula(1);
-//		repositorio.adicionaAluno(aluno);
-//		
-//		Professor professor = new Professor();
-//		professor.setNome("Miguel");
-//		
-//		professor.setDataAdmissao(newDate(10, 15));
-//		repositorio.adicionaProfessor(professor);
-//		
-//		List<Aluno> alunos = repositorio.getAlunos();
-//		assertEquals(1, alunos.size());
-//		assertEquals(aluno, alunos.get(0));
-//		
-//		List<Professor> professores = repositorio.getProfessores();
-//		assertEquals(1, professores.size());
-//		assertEquals(professor, professores.get(0));
+		RepositorioUsuarios repositorio = RepositorioUsuarios.instance();
+
+		String nomeAluno = "José";
+		int matricula = 1;
+		Aluno aluno = new Aluno(nomeAluno, matricula);
+		repositorio.adicionaUsuario(aluno);
+
+		String nomeProfessor = "Miguel";
+		Date dataAdmissao = new Date();
+		Professor professor = new Professor(nomeProfessor, dataAdmissao);
+
+		repositorio.adicionaUsuario(professor);
+
+		assertEquals(2, repositorio.getUsuarios().size());
+
+		repositorio.remove(aluno);
+
+		assertEquals(1, repositorio.getUsuarios().size());
+
 	}
-	
+
 	@Test
 	public void testInserindoCorretamenteObras() {
-//		RepositorioObras repositorio = RepositorioObras.instance();
-//		
-//		Livro livro_1 = new Livro();
-//		livro_1.setNome("O vento levou");
-//		livro_1.setNomeAutor("Joï¿½o Maria Josï¿½");
-//		livro_1.setAnoPublicacao(2001);
-//		livro_1.setNumeroEdicao(1);
-//		livro_1.setQtdeDisponivel(1);
-//		
-//		Livro livro_2 = new Livro();
-//		livro_2.setNome("Levou o vento");
-//		livro_2.setNomeAutor("Josï¿½ Maria Joï¿½o");
-//		livro_2.setAnoPublicacao(2002);
-//		livro_2.setNumeroEdicao(2);
-//		livro_2.setQtdeDisponivel(1);
-//		
-//		repositorio.addLivro(livro_1);
-//		repositorio.addLivro(livro_2);
-//		
-//		MaterialDigital materialDigital = new MaterialDigital();
-//		materialDigital.setNome("");
-//		materialDigital.setQtdeDisponivel(1);
-//		materialDigital.setAnoPublicaï¿½ï¿½o(2005);
-//		materialDigital.setTipo(TipoMaterialDigital.AUDIO);
-//		
-//		repositorio.addMaterialDigital(materialDigital);
-//		
-//		Revista revista = new Revista();
-//		revista.setNome("Fuxico");
-//		revista.setDataPublicaï¿½ï¿½o(newDate(10, 15));
-//		revista.setNumeroEdicao(1);
-//		revista.setQtdeDisponivel(1);
-//		
-//		repositorio.addRevista(revista);
-//		
-//		List<Livro> livros = repositorio.getLivros();
-//		assertEquals(2, livros.size());
-//		assertEquals(livro_1, livros.get(0));
-//		assertEquals(livro_2, livros.get(1));
-//		
-//		List<MaterialDigital> materiaisDigitais = repositorio.getMateriaisDigitais();
-//		assertEquals(1, materiaisDigitais.size());
-//		assertEquals(materialDigital, materiaisDigitais.get(0));
-//		
-//		List<Revista> revistas = repositorio.getRevistas();
-//		assertEquals(1, revistas.size());
-//		assertEquals(revista, revistas.get(0));
+		RepositorioObras repositorio = RepositorioObras.instance();
+
+		String nomeLivro = "O vento levou";
+		String nomeAutor = "João";
+		int anoPublicacao = 2001;
+		int qtdDisponivelLivro = 1;
+		int numeroEdicaoLivro = 1;
+
+		Livro livro = new Livro(nomeLivro, qtdDisponivelLivro, nomeAutor, numeroEdicaoLivro, anoPublicacao);
+
+		String nomeMd = "Como programar - aula 1";
+		int qtdDisponivelMd = 1;
+		int anoPublicacaoMd = 2002;
+		TipoMaterialDigital tipoMd = TipoMaterialDigital.VIDEO;
+
+		MaterialDigital materialDigital = new MaterialDigital(nomeMd, qtdDisponivelMd, anoPublicacaoMd, tipoMd);
+
+		String nomeRevista = "Mundo Extranho";
+		Date dataPublicacaoRevista = new Date();
+		int edicaoRevista = 2;
+		int qtdDisponivelRevista = 1;
+		Revista revista = new Revista(nomeRevista, qtdDisponivelRevista, dataPublicacaoRevista, edicaoRevista);
+
+		repositorio.addObra(revista);
+		repositorio.addObra(livro);
+		repositorio.addObra(materialDigital);
+
+		assertEquals(3, repositorio.getObras().size());
+
+		repositorio.remove(livro);
+
+		assertEquals(2, repositorio.getObras().size());
 	}
-	
+
+	@Test
 	public void testEstaFazendoEmprestimo() {
-//		Livro livro = new Livro();
-//		livro.setNome("Vai dar boa");
-//		livro.setNomeAutor("Joï¿½o Miguï¿½");
-//		livro.setAnoPublicacao(2001);
-//		livro.setNumeroEdicao(1);
-//		livro.setQtdeDisponivel(3);
-//		
-//		Aluno aluno = new Aluno();
-//		aluno.setNome("Guilhermino");
-//		aluno.setNumeroMatricula(2002);
-//		
-//		Professor professor = new Professor();
-//		professor.setNome("Jagunï¿½o");
-//		professor.setDataAdmissao(newDate(5,5));
-		
-//		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
-//		usuarios.adicionaAluno(aluno);
-//		usuarios.adicionaProfessor(professor);
+		String nomeAluno = "José";
+		int matricula = 1;
+		Aluno aluno = new Aluno(nomeAluno, matricula);
+
+		String nomeLivro = "O vento levou";
+		String nomeAutor = "João";
+		int anoPublicacao = 2001;
+		int qtdDisponivelLivro = 1;
+		int numeroEdicaoLivro = 1;
+		Livro livro = new Livro(nomeLivro, qtdDisponivelLivro, nomeAutor, numeroEdicaoLivro, anoPublicacao);
+
+		String nomeMd = "Como programar - aula 1";
+		int qtdDisponivelMd = 1;
+		int anoPublicacaoMd = 2002;
+		TipoMaterialDigital tipoMd = TipoMaterialDigital.VIDEO;
+		MaterialDigital materialDigital = new MaterialDigital(nomeMd, qtdDisponivelMd, anoPublicacaoMd, tipoMd);
+
+		Date dataEmprestimo = new Date();
+
+		EmprestimoController ctrl = new EmprestimoController();
+		ctrl.novoEmprestimo(aluno, livro, dataEmprestimo);
+		ctrl.novoEmprestimo(aluno, materialDigital, dataEmprestimo);
+
+		assertEquals(2, ctrl.listarEmprestimos().size());
+		assertEquals(2, ctrl.listarEmprestimos(aluno).size());
 	}
-	
-	private Date newDate(int mes, int dia) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(2017, mes, dia);
-		return calendar.getTime();
+
+	@Test
+	public void testValorDevolucao() throws ParseException {
+		String nomeAluno = "José";
+		int matricula = 1;
+		Aluno aluno = new Aluno(nomeAluno, matricula);
+
+		String nomeLivro = "O vento levou";
+		String nomeAutor = "João";
+		int anoPublicacao = 2001;
+		int qtdDisponivelLivro = 1;
+		int numeroEdicaoLivro = 1;
+		Livro livro = new Livro(nomeLivro, qtdDisponivelLivro, nomeAutor, numeroEdicaoLivro, anoPublicacao);
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataEmprestimo = format.parse("10/06/2017");
+		Date dataDevolucao = format.parse("20/06/2017");
+
+		EmprestimoController ctrl = new EmprestimoController();
+		ctrl.novoEmprestimo(aluno, livro, dataEmprestimo);
+
+		Emprestimo emprestimo = ctrl.listarEmprestimos(aluno).get(0);
+
+		double valor = ctrl.devolucao(emprestimo, dataDevolucao);
+		assertEquals(10, valor, 2);
 	}
-	
+
 }
