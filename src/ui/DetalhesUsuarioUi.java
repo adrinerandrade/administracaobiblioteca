@@ -45,12 +45,20 @@ public class DetalhesUsuarioUi extends JDialog {
 					}
 					Emprestimo emprestimo = (Emprestimo) emprestimoModel.getElementAt(list.getSelectedIndex());
 					String data = JOptionPane.showInputDialog("Data de devolução:");
-					DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-					/* TODO */
-					Date dataDevolucao = format.parse(data);
+					
+					DateFormat format = new SimpleDateFormat("dd/mm/yyyy");					
+					Date dataDevolucao;
+					try {
+						dataDevolucao = format.parse(data);
+					} catch (ParseException e2) {
+						JOptionPane.showMessageDialog(null, "A data deve ser informada no formato DD/MM/YYYY");
+						return;
+					}
+					
+					
 					double valor = parent.realizarDevolcao(emprestimo, dataDevolucao);
 					JOptionPane.showMessageDialog(null, "O valor do empréstimo é de " + String.valueOf(valor));
-				} catch (ParseException e1) {
+				} catch (RuntimeException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
@@ -75,6 +83,11 @@ public class DetalhesUsuarioUi extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -84,5 +97,7 @@ public class DetalhesUsuarioUi extends JDialog {
 		lista.forEach(emprestimo -> {
 			emprestimoModel.addElement(emprestimo);
 		});
+		
+		setVisible(true);
 	}
 }

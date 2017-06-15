@@ -59,6 +59,7 @@ public class DashBoard {
 	public DashBoard() {
 		repositorioObras = RepositorioObras.instance();
 		repositorioUsuario = RepositorioUsuarios.instance();
+		emprestimoCtrl = new EmprestimoController();
 		initialize();
 	}
 
@@ -141,7 +142,6 @@ public class DashBoard {
 		JButton btnDetalharUsurio = new JButton("Detalhar Usu\u00E1rio");
 		btnDetalharUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(usuariosList.getSelectedIndex());
 				if(usuariosList.getSelectedIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Selecione um usuário!");
 				} else {
@@ -201,7 +201,8 @@ public class DashBoard {
 			Usuario usuario = (Usuario) usuarioModel.getElementAt(usuariosList.getSelectedIndex());
 			Date dataAtual = new Date();
 			emprestimoCtrl.novoEmprestimo(usuario, obra, dataAtual);
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
