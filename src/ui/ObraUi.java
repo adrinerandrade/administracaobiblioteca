@@ -99,35 +99,35 @@ public class ObraUi extends JDialog {
 		contentPanel.add(lblEdio);
 
 		JLabel lblAnoPublicao = new JLabel("Ano Publica\u00E7\u00E3o:");
-		lblAnoPublicao.setBounds(20, 212, 84, 14);
+		lblAnoPublicao.setBounds(20, 212, 105, 14);
 		contentPanel.add(lblAnoPublicao);
 
-		JLabel lblDataDePublicao = new JLabel("Data de Publica\u00E7\u00E3o");
-		lblDataDePublicao.setBounds(20, 237, 91, 14);
+		JLabel lblDataDePublicao = new JLabel("Data de Publica\u00E7\u00E3o:");
+		lblDataDePublicao.setBounds(20, 237, 119, 14);
 		contentPanel.add(lblDataDePublicao);
 
 		txtObra = new JTextField();
-		txtObra.setBounds(114, 134, 229, 20);
+		txtObra.setBounds(149, 134, 194, 20);
 		contentPanel.add(txtObra);
 		txtObra.setColumns(10);
 
 		txtAutor = new JTextField();
-		txtAutor.setBounds(114, 159, 229, 20);
+		txtAutor.setBounds(149, 159, 194, 20);
 		contentPanel.add(txtAutor);
 		txtAutor.setColumns(10);
 
 		txtEdicao = new JTextField();
-		txtEdicao.setBounds(114, 184, 86, 20);
+		txtEdicao.setBounds(149, 184, 69, 20);
 		contentPanel.add(txtEdicao);
 		txtEdicao.setColumns(10);
 
 		txtAno = new JTextField();
-		txtAno.setBounds(114, 209, 86, 20);
+		txtAno.setBounds(149, 209, 69, 20);
 		contentPanel.add(txtAno);
 		txtAno.setColumns(10);
 
 		txtData = new JTextField();
-		txtData.setBounds(114, 234, 86, 20);
+		txtData.setBounds(149, 234, 69, 20);
 		contentPanel.add(txtData);
 		txtData.setColumns(10);
 
@@ -136,7 +136,7 @@ public class ObraUi extends JDialog {
 		contentPanel.add(lblQuantidade);
 
 		txtQuantidade = new JTextField();
-		txtQuantidade.setBounds(114, 259, 86, 20);
+		txtQuantidade.setBounds(149, 259, 69, 20);
 		contentPanel.add(txtQuantidade);
 		txtQuantidade.setColumns(10);
 

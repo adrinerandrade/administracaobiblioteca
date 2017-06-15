@@ -78,7 +78,7 @@ public class Emprestimo {
 	
 	@Override
 	public String toString() {
-		return getObra().getNome() + " - " + new SimpleDateFormat("dd/mm/yyyy").format(getDataEmprestimo());
+		return getObra().getNome() + " - " + new SimpleDateFormat("dd/MM/yyyy").format(getDataEmprestimo());
 	}
 	
 

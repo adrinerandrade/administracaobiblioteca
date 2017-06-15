@@ -72,7 +72,7 @@ public class DashBoard {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obras", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 11, 270, 447);
+		panel.setBounds(10, 11, 280, 447);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -81,15 +81,24 @@ public class DashBoard {
 		panel.add(lblPesquisa);
 		
 		obrasTxt = new JTextField();
-		obrasTxt.setBounds(80, 20, 180, 20);
+		obrasTxt.setBounds(70, 20, 115, 20);
 		panel.add(obrasTxt);
 		obrasTxt.setColumns(10);
 		
 		obraModel = new DefaultListModel();
 		obrasList = new JList(obraModel);
 		obrasList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		obrasList.setBounds(10, 51, 250, 385);
+		obrasList.setBounds(10, 51, 260, 385);
 		panel.add(obrasList);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(195, 19, 75, 23);
+		panel.add(btnBuscar);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				filtrarAction();
+			}
+		});
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Usu\u00E1rios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -130,15 +139,6 @@ public class DashBoard {
 		btnRealizarEmprestimo.setBounds(570, 79, 211, 23);
 		frame.getContentPane().add(btnRealizarEmprestimo);
 		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				filtrarAction();
-			}
-		});
-		btnBuscar.setBounds(570, 113, 211, 23);
-		frame.getContentPane().add(btnBuscar);
-		
 		JButton btnDetalharUsurio = new JButton("Detalhar Usu\u00E1rio");
 		btnDetalharUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -150,7 +150,7 @@ public class DashBoard {
 				
 			}
 		});
-		btnDetalharUsurio.setBounds(570, 147, 211, 23);
+		btnDetalharUsurio.setBounds(570, 113, 211, 23);
 		frame.getContentPane().add(btnDetalharUsurio);
 		
 		JButton btnConsultarObrasEmprestadas = new JButton("Consultar Obras Emprestadas");
@@ -164,7 +164,7 @@ public class DashBoard {
 				}
 			}
 		});
-		btnConsultarObrasEmprestadas.setBounds(570, 181, 211, 23);
+		btnConsultarObrasEmprestadas.setBounds(570, 147, 211, 23);
 		frame.getContentPane().add(btnConsultarObrasEmprestadas);
 		
 		obrasTxt.addKeyListener(new KeyAdapter() {

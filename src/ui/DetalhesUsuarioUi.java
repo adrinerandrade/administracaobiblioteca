@@ -29,7 +29,7 @@ public class DetalhesUsuarioUi extends JDialog {
 	private JList list;
 
 	public DetalhesUsuarioUi(DashBoard parent) {
-		setBounds(100, 100, 315, 296);
+		setBounds(100, 100, 315, 267);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -82,20 +82,16 @@ public class DetalhesUsuarioUi extends JDialog {
 		list.setBounds(10, 22, 259, 135);
 		panel.add(list);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
+			JButton okButton = new JButton("OK");
+			okButton.setBounds(242, 190, 47, 23);
+			contentPanel.add(okButton);
+			okButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
+			okButton.setActionCommand("OK");
+			getRootPane().setDefaultButton(okButton);
 		}
 
 		parent.getEmprestimosUsuario().forEach(emprestimo -> {
