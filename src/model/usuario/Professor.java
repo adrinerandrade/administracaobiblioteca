@@ -58,4 +58,9 @@ public final class Professor extends Usuario {
 		return TipoUsuario.PROFESSOR;
 	}
 	
+	@Override
+	public String toString(){
+		return getTipo() + ": " + getNome();
+	}
+	
 }

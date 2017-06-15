@@ -123,10 +123,7 @@ public class DashBoard {
 		JButton btnRealizarEmprestimo = new JButton("Realizar Emprestimo");
 		btnRealizarEmprestimo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Obra obra = (Obra) obraModel.getElementAt(obrasList.getSelectedIndex());
-				System.out.println(obra.getNome());
-				
+				 realizarEmprestimo();				
 			}
 		});
 		btnRealizarEmprestimo.setBounds(570, 79, 211, 23);
@@ -198,10 +195,15 @@ public class DashBoard {
 			JOptionPane.showMessageDialog(null, "Selecione um usuário para realizar o emprestimo!");
 			return;
 		}
-		Obra obra = (Obra) obraModel.getElementAt(obrasList.getSelectedIndex());
-		Usuario usuario = (Usuario) usuarioModel.getElementAt(usuariosList.getSelectedIndex());
-		Date dataAtual = new Date();
-		emprestimoCtrl.novoEmprestimo(usuario, obra, dataAtual);
+		
+		try {
+			Obra obra = (Obra) obraModel.getElementAt(obrasList.getSelectedIndex());
+			Usuario usuario = (Usuario) usuarioModel.getElementAt(usuariosList.getSelectedIndex());
+			Date dataAtual = new Date();
+			emprestimoCtrl.novoEmprestimo(usuario, obra, dataAtual);
+		} catch (RuntimeException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 	
 	public double realizarDevolcao(Emprestimo emprestimo, Date dataDevolucao){

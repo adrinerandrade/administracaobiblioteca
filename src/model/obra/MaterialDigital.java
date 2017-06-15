@@ -2,24 +2,24 @@ package model.obra;
 
 public final class MaterialDigital extends Obra {
 
-	private int anoPublicaï¿½ï¿½o;
+	private int anoPublicacao;
 	private TipoMaterialDigital tipo;
 
 	public MaterialDigital(String nome, int qtdeDisponivel, int anoPublicacao, TipoMaterialDigital tipo) {
 		super(nome, qtdeDisponivel);
-		setAnoPublicaï¿½ï¿½o(anoPublicacao);
+		setanoPublicacao(anoPublicacao);
 		setTipo(tipo);
 	}
 
-	public int getAnoPublicaï¿½ï¿½o() {
-		return anoPublicaï¿½ï¿½o;
+	public int getAnoPublicacao() {
+		return anoPublicacao;
 	}
 
-	public void setAnoPublicaï¿½ï¿½o(int anoPublicacao) {
+	public void setanoPublicacao(int anoPublicacao) {
 		if (anoPublicacao < 0) {
 			throw new RuntimeException("Ano de publicaï¿½ï¿½o nï¿½o pode ser negativo");
 		}
-		this.anoPublicaï¿½ï¿½o = anoPublicacao;
+		this.anoPublicacao = anoPublicacao;
 	}
 
 	public TipoMaterialDigital getTipo() {
@@ -28,7 +28,7 @@ public final class MaterialDigital extends Obra {
 
 	public void setTipo(TipoMaterialDigital tipo) {
 		if (tipo == null) {
-			throw new RuntimeException("ï¿½ necessï¿½rio informar um tipo do material digital");
+			throw new RuntimeException("É necessário informar um tipo do material digital");
 		}
 		this.tipo = tipo;
 	}
@@ -37,7 +37,7 @@ public final class MaterialDigital extends Obra {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + anoPublicaï¿½ï¿½o;
+		result = prime * result + anoPublicacao;
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
@@ -51,7 +51,7 @@ public final class MaterialDigital extends Obra {
 		if (getClass() != obj.getClass())
 			return false;
 		MaterialDigital other = (MaterialDigital) obj;
-		if (anoPublicaï¿½ï¿½o != other.anoPublicaï¿½ï¿½o)
+		if (anoPublicacao != other.anoPublicacao)
 			return false;
 		if (tipo != other.tipo)
 			return false;

@@ -89,27 +89,29 @@ public class UsuarioUi extends JDialog {
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Usuario usuario = null;
+					String nome = txtNome.getText();
 					try {
 						if(rdbtnAluno.isSelected()) {
+							int matricula;
 							try {
-								int matricula = Integer.parseInt(txtMatricula.getText());
+								matricula = Integer.parseInt(txtMatricula.getText());
 							} catch (NumberFormatException e2) {
 								JOptionPane.showMessageDialog(null, "A matricula informada deve ser um numero inteiro!");
 								return;
 							}
 							
-							usuario = new Aluno(); /*TODO*/
+							usuario = new Aluno(nome, matricula);
 						} else if (rdbtnProfessor.isSelected()) {
-							
+							Date data;
+							DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
 							try {
-								DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-								Date data = format.parse(txtDataAdm.getText());
+								data = format.parse(txtDataAdm.getText());
 							} catch (ParseException e2) {
 								JOptionPane.showMessageDialog(null, "A data de admissão deve ser informada no formato DD/MM/YYYY");
 								return;
 							}							
 							
-							usuario = new Professor();/*TODO*/
+							usuario = new Professor(nome, data);
 						} else {
 							JOptionPane.showMessageDialog(null, "Selecione um tipo de usuário!");
 						}
@@ -119,7 +121,6 @@ public class UsuarioUi extends JDialog {
 					}
 					
 					if (usuario != null) {
-						usuario.setNome(txtNome.getText());
 						setVisible(false);
 						parent.incluirUsuario(usuario);
 					}

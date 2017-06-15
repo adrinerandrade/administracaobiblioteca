@@ -149,66 +149,75 @@ public class ObraUi extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nome = txtObra.getText();
+					int qtd;
+					
+					try {
+						qtd = Integer.parseInt(txtQuantidade.getText());
+					} catch (NumberFormatException e2) {
+						JOptionPane.showMessageDialog(null, "A quantidade informada deve ser um numero inteiro!");
+						return;
+					}
+					
 					if (rdbtnMaterialDigital.isSelected()) {
-						TipoMaterialDigital tipo;
-						
-						try {
-							int qtd = Integer.parseInt(txtQuantidade.getText());
-						} catch (NumberFormatException e2) {
-							JOptionPane.showMessageDialog(null, "A quantidade informada deve ser um numero inteiro!");
-							return;
-						}
-						
+						TipoMaterialDigital tipo = null;
+						int ano;
+
 						if (rdbtnAudio.isSelected()) {
 							tipo = TipoMaterialDigital.AUDIO;
 						} else if (rdbtnVideo.isSelected()) {
 							tipo = TipoMaterialDigital.VIDEO;
 						}
-						
+
 						try {
-							int ano = Integer.parseInt(txtAno.getText());
+							ano = Integer.parseInt(txtAno.getText());
 						} catch (NumberFormatException e2) {
 							JOptionPane.showMessageDialog(null, "O ano informado deve ser um numero inteiro!");
 							return;
 						}
-						
-						obra = new MaterialDigital();/* TODO */
-						
+
+						obra = new MaterialDigital(nome, qtd, ano, tipo);
+
 					} else if (rdbtnRevista.isSelected()) {
+						Date data;
+						DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+						int edicao;
+						
 						try {
-							DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-							Date data = format.parse(txtData.getText());
+							data = format.parse(txtData.getText());
 						} catch (ParseException e2) {
 							JOptionPane.showMessageDialog(null, "A data deve ser informada no formato DD/MM/YYYY");
 							return;
 						}
-						
+
 						try {
-							int edicao = Integer.parseInt(txtEdicao.getText());
+							edicao = Integer.parseInt(txtEdicao.getText());
 						} catch (NumberFormatException e2) {
 							JOptionPane.showMessageDialog(null, "A edição informada deve ser um numero inteiro!");
 							return;
 						}
+
+						obra = new Revista(nome,qtd,data,edicao);
 						
-						obra = new Revista();/* TODO */
 					} else if (rdbtnLivro.isSelected()) {
-						
+						String autor = txtAutor.getText();
+						int ano;
+						int edicao;
+
 						try {
-							int ano = Integer.parseInt(txtAno.getText());
+							ano = Integer.parseInt(txtAno.getText());
 						} catch (NumberFormatException e2) {
 							JOptionPane.showMessageDialog(null, "O ano informado deve ser um numero inteiro!");
 							return;
 						}
-						
+
 						try {
-							int edicao = Integer.parseInt(txtEdicao.getText());
+							edicao = Integer.parseInt(txtEdicao.getText());
 						} catch (NumberFormatException e2) {
 							JOptionPane.showMessageDialog(null, "A edição informada deve ser um numero inteiro!");
 							return;
 						}
-						
-						String autor = txtAutor.getText();
-						obra = new Livro();/* TODO */
+
+						obra = new Livro(nome, qtd, autor, edicao, ano);
 					} else {
 						JOptionPane.showMessageDialog(null, "Selecione um tipo de obra");
 						return;

@@ -4,24 +4,24 @@ import java.util.Date;
 
 public final class Revista extends Obra {
 
-	private Date dataPublicaï¿½ï¿½o;
+	private Date dataPublicacao;
 	private int numeroEdicao;
 
 	public Revista(String nome, int qtdeDisponivel, Date dataPublicacao, int numeroEdicao) {
 		super(nome, qtdeDisponivel);
-		setDataPublicaï¿½ï¿½o(dataPublicacao);
+		setDataPublicacao(dataPublicacao);
 		setNumeroEdicao(numeroEdicao);
 	}
 
-	public Date getDataPublicaï¿½ï¿½o() {
-		return dataPublicaï¿½ï¿½o;
+	public Date getDataPublicacao() {
+		return dataPublicacao;
 	}
 
-	public void setDataPublicaï¿½ï¿½o(Date dataPublicacao) {
+	public void setDataPublicacao(Date dataPublicacao) {
 		if  (dataPublicacao == null) {
-			throw new RuntimeException("ï¿½ necessï¿½rio informar uma data de publicaï¿½ï¿½o.");
+			throw new RuntimeException("É necessário informar uma data de publicação.");
 		}
-		this.dataPublicaï¿½ï¿½o = dataPublicacao;
+		this.dataPublicacao = dataPublicacao;
 	}
 
 	public int getNumeroEdicao() {
@@ -30,7 +30,7 @@ public final class Revista extends Obra {
 
 	public void setNumeroEdicao(int numeroEdicao) {
 		if (numeroEdicao < 0) {
-			throw new RuntimeException("Nï¿½mero da ediï¿½ï¿½o nï¿½o pode ser negativo");
+			throw new RuntimeException("Número da edição não pode ser negativo");
 		}
 		this.numeroEdicao = numeroEdicao;
 	}
@@ -39,7 +39,7 @@ public final class Revista extends Obra {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dataPublicaï¿½ï¿½o == null) ? 0 : dataPublicaï¿½ï¿½o.hashCode());
+		result = prime * result + ((dataPublicacao == null) ? 0 : dataPublicacao.hashCode());
 		result = prime * result + numeroEdicao;
 		return result;
 	}
@@ -53,10 +53,10 @@ public final class Revista extends Obra {
 		if (getClass() != obj.getClass())
 			return false;
 		Revista other = (Revista) obj;
-		if (dataPublicaï¿½ï¿½o == null) {
-			if (other.dataPublicaï¿½ï¿½o != null)
+		if (dataPublicacao == null) {
+			if (other.dataPublicacao != null)
 				return false;
-		} else if (!dataPublicaï¿½ï¿½o.equals(other.dataPublicaï¿½ï¿½o))
+		} else if (!dataPublicacao.equals(other.dataPublicacao))
 			return false;
 		if (numeroEdicao != other.numeroEdicao)
 			return false;

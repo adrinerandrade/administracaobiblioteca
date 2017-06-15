@@ -21,7 +21,7 @@ public final class Livro extends Obra {
 
 	public void setNomeAutor(String nomeAutor) {
 		if (StringUtils.isBlank(nomeAutor)) {
-			throw new RuntimeException("Nome do autor nï¿½o pode ser vazio.");
+			throw new RuntimeException("Nome do autor não pode ser vazio.");
 		}
 		this.nomeAutor = nomeAutor;
 	}
@@ -32,7 +32,7 @@ public final class Livro extends Obra {
 
 	public void setNumeroEdicao(int numeroEdicao) {
 		if (numeroEdicao < 0) {
-			throw new RuntimeException("Numero da ediï¿½ï¿½o nï¿½o pode ser negativo.");
+			throw new RuntimeException("Numero da edição não pode ser negativo.");
 		}
 		this.numeroEdicao = numeroEdicao;
 	}
@@ -43,7 +43,7 @@ public final class Livro extends Obra {
 
 	public void setAnoPublicacao(int anoPublicacao) {
 		if (anoPublicacao < 0) {
-			throw new RuntimeException("Ano de publicaï¿½ï¿½o nï¿½o pode ser negativo.");
+			throw new RuntimeException("Ano de publicação não pode ser negativo.");
 		}
 		this.anoPublicacao = anoPublicacao;
 	}
