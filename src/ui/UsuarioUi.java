@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -88,19 +89,33 @@ public class UsuarioUi extends JDialog {
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Usuario usuario = null;
-					if(rdbtnAluno.isSelected()) {
-						usuario = new Aluno();
-						((Aluno) usuario).setNumeroMatricula(Integer.parseInt(txtMatricula.getText()));
-					} else if (rdbtnProfessor.isSelected()) {
-						usuario = new Professor();
-						DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-						try {
-							((Professor) usuario).setDataAdmissao(format.parse(txtDataAdm.getText()));
-						} catch (ParseException e1) {
-							e1.printStackTrace();
+					try {
+						if(rdbtnAluno.isSelected()) {
+							try {
+								int matricula = Integer.parseInt(txtMatricula.getText());
+							} catch (NumberFormatException e2) {
+								JOptionPane.showMessageDialog(null, "A matricula informada deve ser um numero inteiro!");
+								return;
+							}
+							
+							usuario = new Aluno(); /*TODO*/
+						} else if (rdbtnProfessor.isSelected()) {
+							
+							try {
+								DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+								Date data = format.parse(txtDataAdm.getText());
+							} catch (ParseException e2) {
+								JOptionPane.showMessageDialog(null, "A data de admissão deve ser informada no formato DD/MM/YYYY");
+								return;
+							}							
+							
+							usuario = new Professor();/*TODO*/
+						} else {
+							JOptionPane.showMessageDialog(null, "Selecione um tipo de usuário!");
 						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Selecione um tipo de usuário!");
+					} catch (RuntimeException e2) {
+						JOptionPane.showMessageDialog(null, e2.getMessage());
+						return;
 					}
 					
 					if (usuario != null) {

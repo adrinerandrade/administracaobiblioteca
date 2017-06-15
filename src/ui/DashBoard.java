@@ -1,5 +1,7 @@
 package ui;
 
+import static java.util.stream.Collectors.toList;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -19,8 +22,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 
 import model.emprestimo.Emprestimo;
 import model.emprestimo.EmprestimoController;
@@ -139,6 +140,36 @@ public class DashBoard {
 		});
 		btnBuscar.setBounds(570, 113, 211, 23);
 		frame.getContentPane().add(btnBuscar);
+		
+		JButton btnDetalharUsurio = new JButton("Detalhar Usu\u00E1rio");
+		btnDetalharUsurio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(usuariosList.getSelectedIndex());
+				if(usuariosList.getSelectedIndex() == -1) {
+					JOptionPane.showMessageDialog(null, "Selecione um usuário!");
+				} else {
+					List<Emprestimo>lista = emprestimoCtrl.listarEmprestimos((Usuario)usuarioModel.getElementAt(usuariosList.getSelectedIndex()));
+					DetalhesUsuarioUi detalhe = new DetalhesUsuarioUi(DashBoard.this, lista);
+				}
+				
+			}
+		});
+		btnDetalharUsurio.setBounds(570, 147, 211, 23);
+		frame.getContentPane().add(btnDetalharUsurio);
+		
+		JButton btnConsultarObrasEmprestadas = new JButton("Consultar Obras Emprestadas");
+		btnConsultarObrasEmprestadas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					List<Obra> lista = emprestimoCtrl.listarEmprestimos().stream().map(emp-> emp.getObra()).collect(toList());
+					DetalhesEmprestimoUi detalhe = new DetalhesEmprestimoUi(lista);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Não existem obras emprestadas!");
+				}
+			}
+		});
+		btnConsultarObrasEmprestadas.setBounds(570, 181, 211, 23);
+		frame.getContentPane().add(btnConsultarObrasEmprestadas);
 		
 		obrasTxt.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e){

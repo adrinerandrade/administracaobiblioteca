@@ -34,36 +34,37 @@ public class DetalhesUsuarioUi extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JButton btnRealizarDevoluo = new JButton("Realizar Devolu\u00E7\u00E3o");
 		btnRealizarDevoluo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(list.getSelectedIndex() == -1){
-					JOptionPane.showMessageDialog(null, "Selecione uma obra para devolução!");
-					return;
-				}
-				Emprestimo emprestimo = (Emprestimo) emprestimoModel.getElementAt(list.getSelectedIndex());
-				String data = JOptionPane.showInputDialog("Data de devolução:");
-				DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
 				try {
-					/*TODO*/
+					if (list.getSelectedIndex() == -1) {
+						JOptionPane.showMessageDialog(null, "Selecione uma obra para devolução!");
+						return;
+					}
+					Emprestimo emprestimo = (Emprestimo) emprestimoModel.getElementAt(list.getSelectedIndex());
+					String data = JOptionPane.showInputDialog("Data de devolução:");
+					DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+					/* TODO */
 					Date dataDevolucao = format.parse(data);
 					double valor = parent.realizarDevolcao(emprestimo, dataDevolucao);
-					JOptionPane.showMessageDialog(null,"O valor do empréstimo é de " + String.valueOf(valor));
+					JOptionPane.showMessageDialog(null, "O valor do empréstimo é de " + String.valueOf(valor));
 				} catch (ParseException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
 		btnRealizarDevoluo.setBounds(10, 190, 144, 23);
 		contentPanel.add(btnRealizarDevoluo);
-		
+
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Obras Emprestadas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(
+				new TitledBorder(null, "Obras Emprestadas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 279, 168);
 		contentPanel.add(panel);
 		panel.setLayout(null);
-		
+
 		emprestimoModel = new DefaultListModel();
 		list = new JList(emprestimoModel);
 		list.setBounds(10, 22, 259, 135);
@@ -79,8 +80,8 @@ public class DetalhesUsuarioUi extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
-		
-		lista.forEach(emprestimo->{
+
+		lista.forEach(emprestimo -> {
 			emprestimoModel.addElement(emprestimo);
 		});
 	}

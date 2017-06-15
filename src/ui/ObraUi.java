@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -35,7 +36,6 @@ public class ObraUi extends JDialog {
 	private JTextField txtData;
 	private Obra obra;
 	private JTextField txtQuantidade;
-
 
 	public ObraUi(DashBoard parent) {
 		setBounds(100, 100, 379, 377);
@@ -130,11 +130,11 @@ public class ObraUi extends JDialog {
 		txtData.setBounds(114, 234, 86, 20);
 		contentPanel.add(txtData);
 		txtData.setColumns(10);
-		
+
 		JLabel lblQuantidade = new JLabel("Quantidade:");
 		lblQuantidade.setBounds(20, 262, 84, 14);
 		contentPanel.add(lblQuantidade);
-		
+
 		txtQuantidade = new JTextField();
 		txtQuantidade.setBounds(114, 259, 86, 20);
 		contentPanel.add(txtQuantidade);
@@ -147,48 +147,82 @@ public class ObraUi extends JDialog {
 		JButton okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (rdbtnMaterialDigital.isSelected()) {
-					obra = new MaterialDigital();
-					if (rdbtnAudio.isSelected()) {
-						((MaterialDigital) obra).setTipo(TipoMaterialDigital.AUDIO);
-					} else if (rdbtnVideo.isSelected()) {
-						((MaterialDigital) obra).setTipo(TipoMaterialDigital.VIDEO);
+				try {
+					String nome = txtObra.getText();
+					if (rdbtnMaterialDigital.isSelected()) {
+						TipoMaterialDigital tipo;
+						
+						try {
+							int qtd = Integer.parseInt(txtQuantidade.getText());
+						} catch (NumberFormatException e2) {
+							JOptionPane.showMessageDialog(null, "A quantidade informada deve ser um numero inteiro!");
+							return;
+						}
+						
+						if (rdbtnAudio.isSelected()) {
+							tipo = TipoMaterialDigital.AUDIO;
+						} else if (rdbtnVideo.isSelected()) {
+							tipo = TipoMaterialDigital.VIDEO;
+						}
+						
+						try {
+							int ano = Integer.parseInt(txtAno.getText());
+						} catch (NumberFormatException e2) {
+							JOptionPane.showMessageDialog(null, "O ano informado deve ser um numero inteiro!");
+							return;
+						}
+						
+						obra = new MaterialDigital();/* TODO */
+						
+					} else if (rdbtnRevista.isSelected()) {
+						try {
+							DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+							Date data = format.parse(txtData.getText());
+						} catch (ParseException e2) {
+							JOptionPane.showMessageDialog(null, "A data deve ser informada no formato DD/MM/YYYY");
+							return;
+						}
+						
+						try {
+							int edicao = Integer.parseInt(txtEdicao.getText());
+						} catch (NumberFormatException e2) {
+							JOptionPane.showMessageDialog(null, "A edição informada deve ser um numero inteiro!");
+							return;
+						}
+						
+						obra = new Revista();/* TODO */
+					} else if (rdbtnLivro.isSelected()) {
+						
+						try {
+							int ano = Integer.parseInt(txtAno.getText());
+						} catch (NumberFormatException e2) {
+							JOptionPane.showMessageDialog(null, "O ano informado deve ser um numero inteiro!");
+							return;
+						}
+						
+						try {
+							int edicao = Integer.parseInt(txtEdicao.getText());
+						} catch (NumberFormatException e2) {
+							JOptionPane.showMessageDialog(null, "A edição informada deve ser um numero inteiro!");
+							return;
+						}
+						
+						String autor = txtAutor.getText();
+						obra = new Livro();/* TODO */
 					} else {
-						JOptionPane.showMessageDialog(null, "Selecione um tipo de material digital");
+						JOptionPane.showMessageDialog(null, "Selecione um tipo de obra");
 						return;
 					}
-					
-					((MaterialDigital) obra).setAnoPublicação(Integer.parseInt(txtAno.getText()));
-					((MaterialDigital) obra).setQtdeDisponivel(Integer.parseInt(txtQuantidade.getText()));
-				} else if (rdbtnRevista.isSelected()) {
-					obra = new Revista();
-					
-					DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-					/*TODO Ajustar*/
-					try {
-						((Revista) obra).setDataPublicação(format.parse(txtData.getText()));
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+
+					if (obra != null) {
+						setVisible(false);
+						parent.incluirObra(obra);
 					}
-					((Revista) obra).setNumeroEdicao(Integer.parseInt(txtEdicao.getText()));
-				} else if (rdbtnLivro.isSelected()) {
-					obra = new Livro();
-					((Livro) obra).setAnoPublicacao(Integer.parseInt(txtAno.getText()));
-					((Livro) obra).setNomeAutor(txtAutor.getText());
-					((Livro) obra).setNumeroEdicao(Integer.parseInt(txtEdicao.getText()));
-				} else {
-					JOptionPane.showMessageDialog(null, "Selecione um tipo de obra");
+				} catch (RuntimeException e2) {
+					JOptionPane.showMessageDialog(null, e2.getMessage());
 					return;
 				}
-				obra.setQtdeDisponivel(Integer.parseInt(txtQuantidade.getText()));
-				obra.setNome(txtObra.getText());
 
-				if (obra != null) {
-					setVisible(false);
-					parent.incluirObra(obra);
-				}
-				
 				dispose();
 			}
 		});
@@ -234,11 +268,11 @@ public class ObraUi extends JDialog {
 				txtAno.setEnabled(false);
 			}
 		});
-		
+
 		setVisible(true);
 	}
-	
-	public Obra getObra(){
+
+	public Obra getObra() {
 		setVisible(true);
 		return obra;
 	}
