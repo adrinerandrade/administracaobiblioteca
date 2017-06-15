@@ -14,13 +14,13 @@ public final class EmprestimoController {
 	
 	public void novoEmprestimo(Usuario usuario, Obra obra, Date dataEmprestimo) {
 		if (obra.getQtdeDisponivel() < 1) {
-			throw new RuntimeException(String.format("Obra '%s' não está disponível no estoque."));
+			throw new RuntimeException(String.format("Obra '%s' não está disponível no estoque.", obra.getNome()));
 		}
 		
 		EstrategiaNegocio estrategiaNegocio = usuario.getTipo().getEstrategiaNegocio();
 		long qtdeEmprestimos = repositorio.getEmprestimosUsuario(usuario).size();
 		if (estrategiaNegocio.atingiuLimiteEmprestimos(qtdeEmprestimos)) {
-			throw new RuntimeException(String.format("Usuário '%s' atingiu limite de empréstimos."));
+			throw new RuntimeException(String.format("Usuário '%s' atingiu limite de empréstimos.", usuario.getNome()));
 		}
 		
 		obra.setQtdeDisponivel(obra.getQtdeDisponivel() - 1);
