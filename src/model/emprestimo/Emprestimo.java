@@ -12,6 +12,15 @@ public class Emprestimo {
 	private Date dataEmprestimo;
 
 	public Emprestimo(Obra obra, Usuario usuario, Date dataEmprestimo) {
+		if (obra == null) {
+			throw new RuntimeException("Uma obra deve ser informada.");
+		}
+		if (usuario == null) {
+			throw new RuntimeException("Um usuário deve ser informado.");
+		}
+		if (dataEmprestimo == null) {
+			throw new RuntimeException("Uma data inicial do empréstimo deve ser informada.");
+		}
 		this.obra = obra;
 		this.usuario = usuario;
 		this.dataEmprestimo = dataEmprestimo;
@@ -24,7 +33,7 @@ public class Emprestimo {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	public Date getDataEmprestimo() {
 		return dataEmprestimo;
 	}
