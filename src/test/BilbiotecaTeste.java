@@ -5,11 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-
-import org.apache.commons.lang3.time.DateUtils;
-import org.junit.Test;
 
 import model.emprestimo.Emprestimo;
 import model.emprestimo.EmprestimoController;
@@ -22,8 +18,23 @@ import model.usuario.Aluno;
 import model.usuario.Professor;
 import model.usuario.RepositorioUsuarios;
 
+import org.junit.Before;
+import org.junit.Test;
+
 public class BilbiotecaTeste {
 
+	@Before
+	public void limparRepositorios() {
+		RepositorioUsuarios usuarios = RepositorioUsuarios.instance();
+		usuarios.getUsuarios().stream().forEach(usuarios::remove);
+		
+		RepositorioObras obras = RepositorioObras.instance();
+		obras.getObras().stream().forEach(obras::remove);
+		
+		EmprestimoController emprestimos = new EmprestimoController();
+		emprestimos.listarEmprestimos().forEach(e -> emprestimos.devolucao(e, new Date()));
+	}
+	
 	@Test
 	public void testInserindoCorretamenteUsuarios() {
 		RepositorioUsuarios repositorio = RepositorioUsuarios.instance();
@@ -135,7 +146,7 @@ public class BilbiotecaTeste {
 		int qtdDisponivelMd2 = 1;
 		int anoPublicacaoMd2 = 2002;
 		TipoMaterialDigital tipoMd2 = TipoMaterialDigital.AUDIO;
-		MaterialDigital materialDigital2 = new MaterialDigital(nomeMd, qtdDisponivelMd, anoPublicacaoMd, tipoMd);
+		MaterialDigital materialDigital2 = new MaterialDigital(nomeMd2, qtdDisponivelMd2, anoPublicacaoMd2, tipoMd2);
 
 		String nomeRevista = "Mundo Extranho";
 		Date dataPublicacaoRevista = new Date();
@@ -175,7 +186,7 @@ public class BilbiotecaTeste {
 		int qtdDisponivelMd2 = 1;
 		int anoPublicacaoMd2 = 2002;
 		TipoMaterialDigital tipoMd2 = TipoMaterialDigital.AUDIO;
-		MaterialDigital materialDigital2 = new MaterialDigital(nomeMd, qtdDisponivelMd, anoPublicacaoMd, tipoMd);
+		MaterialDigital materialDigital2 = new MaterialDigital(nomeMd2, qtdDisponivelMd2, anoPublicacaoMd2, tipoMd2);
 
 		String nomeRevista = "Mundo Extranho";
 		Date dataPublicacaoRevista = new Date();
@@ -187,13 +198,13 @@ public class BilbiotecaTeste {
 		Date dataPublicacaoRevista2 = new Date();
 		int edicaoRevista2 = 2;
 		int qtdDisponivelRevista2 = 1;
-		Revista revista2 = new Revista(nomeRevista, qtdDisponivelRevista, dataPublicacaoRevista, edicaoRevista);
+		Revista revista2 = new Revista(nomeRevista2, qtdDisponivelRevista2, dataPublicacaoRevista2, edicaoRevista2);
 
 		String nomeRevista3 = "Capricho";
 		Date dataPublicacaoRevista3 = new Date();
 		int edicaoRevista3 = 2;
 		int qtdDisponivelRevista3 = 1;
-		Revista revista3 = new Revista(nomeRevista, qtdDisponivelRevista, dataPublicacaoRevista, edicaoRevista);
+		Revista revista3 = new Revista(nomeRevista3, qtdDisponivelRevista3, dataPublicacaoRevista3, edicaoRevista3);
 
 		Date dataEmprestimo = new Date();
 
@@ -278,7 +289,7 @@ public class BilbiotecaTeste {
 
 		Emprestimo emprestimo = ctrl.listarEmprestimos(aluno).get(0);
 
-		double valor = ctrl.devolucao(emprestimo, dataDevolucao);
+		ctrl.devolucao(emprestimo, dataDevolucao);
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -288,7 +299,7 @@ public class BilbiotecaTeste {
 		int anoPublicacao = 2001;
 		int qtdDisponivelLivro = 1;
 		int numeroEdicaoLivro = -1;
-		Livro livro = new Livro(nomeLivro, qtdDisponivelLivro, nomeAutor, numeroEdicaoLivro, anoPublicacao);
+		new Livro(nomeLivro, qtdDisponivelLivro, nomeAutor, numeroEdicaoLivro, anoPublicacao);
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -297,7 +308,7 @@ public class BilbiotecaTeste {
 		int qtdDisponivelMd = 1;
 		int anoPublicacaoMd = -2002;
 		TipoMaterialDigital tipoMd = TipoMaterialDigital.VIDEO;
-		MaterialDigital materialDigital = new MaterialDigital(nomeMd, qtdDisponivelMd, anoPublicacaoMd, tipoMd);
+		new MaterialDigital(nomeMd, qtdDisponivelMd, anoPublicacaoMd, tipoMd);
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -306,21 +317,21 @@ public class BilbiotecaTeste {
 		Date dataPublicacaoRevista = new Date();
 		int edicaoRevista = -2;
 		int qtdDisponivelRevista = 1;
-		Revista revista = new Revista(nomeRevista, qtdDisponivelRevista, dataPublicacaoRevista, edicaoRevista);
+		new Revista(nomeRevista, qtdDisponivelRevista, dataPublicacaoRevista, edicaoRevista);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testContrutorProfessor() {
 		String nomeProfessor = "Miguel";
 		Date dataAdmissao = null;
-		Professor professor = new Professor(nomeProfessor, dataAdmissao);
+		new Professor(nomeProfessor, dataAdmissao);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testContrutorAluno() {
 		String nomeAluno = "José";
 		int matricula = -1;
-		Aluno aluno = new Aluno(nomeAluno, matricula);
+		new Aluno(nomeAluno, matricula);
 	}
 
 }
