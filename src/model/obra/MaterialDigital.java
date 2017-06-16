@@ -17,7 +17,7 @@ public final class MaterialDigital extends Obra {
 
 	public void setanoPublicacao(int anoPublicacao) {
 		if (anoPublicacao < 0) {
-			throw new RuntimeException("Ano de publicaï¿½ï¿½o nï¿½o pode ser negativo");
+			throw new RuntimeException("Ano de publicação não pode ser negativo");
 		}
 		this.anoPublicacao = anoPublicacao;
 	}
